@@ -1,0 +1,18 @@
+###get all job list
+GET http://localhost:3000/api/jobs
+
+###create job list
+POST http://localhost:3000/api/jobs
+
+### get single job list
+GET http://localhost:3000/api/jobs/1
+
+### update job list
+PUT http://localhost:3000/api/jobs/1
+
+### delete job list
+DELETE http://localhost:3000/api/jobs/1
+
+### bookmark a job
+POST http://localhost:3000/api/bookmarks/2
+
