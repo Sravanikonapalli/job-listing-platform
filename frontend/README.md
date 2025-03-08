@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+## Overview
+This is a full-stack Job Portal application where users can sign up, log in, post job listings, and browse available jobs. The application includes authentication, job management, and filtering functionalities.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tech Stack
+- **Frontend:** React.js
+- **Backend:** Node.js, Express.js
+- **Database:** SQLite
+- **Authentication:** JWT (JSON Web Tokens)
 
-## Available Scripts
+## Database Setup
+1. install SQLite
+2. Run the command in SQLite to create the `users` and `jobs` tables:
 
-In the project directory, you can run:
+```sql
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    mobile TEXT NOT NULL,
+    password TEXT NOT NULL
+);
 
-### `npm start`
+CREATE TABLE jobs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    location TEXT NOT NULL,
+    jobType TEXT NOT NULL,
+    salaryRange TEXT NOT NULL,
+    userId INTEGER NOT NULL,
+    FOREIGN KEY (userId) REFERENCES users(id)
+);
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## API Endpoints
+### Authentication
+- **POST `/signup`** - Register a new user
+- **POST `/login`** - Authenticate and receive a JWT token
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Jobs Management
+- **GET `/api/jobs`** - Get all job listings
+- **POST `/api/jobs`** - Create a new job (Requires Authentication)
+- **GET `/api/jobs/:id`** - Get details of a single job
+- **PUT `/api/jobs/:id`** - Update job details (Requires Authentication)
+- **DELETE `/api/jobs/:id`** - Delete a job (Requires Authentication)
 
-### `npm test`
+## Setup Instructions
+1. Clone the repository:
+   ```sh
+   git clone origin  https://github.com/Sravanikonapalli/job-listing-platform.git 
+   cd job-listing-platform
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the backend server:
+   ```sh
+   cd backend
+   node server.js
+   ```
+4. Start the frontend:
+   ```sh
+   cd frontend
+   npm start
+   ```
+5. Access the backend application at `http://localhost:3000`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deployment
+- **Backend:** Deployed on Render
+- **Frontend:** Deployed on Vercel
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
