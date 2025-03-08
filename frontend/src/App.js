@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Dashboard from "./components/Dashboard";
+import JobDetails from "./components/JobDetails";
+import AddJob from "./components/AddJob";
+import Header from "./components/Header";
+import EditJob from "./components/EditJob";
+const PrivateRoute = ({ element }) => {
+    const isAuthenticated = localStorage.getItem("token");
+    return isAuthenticated ? element : <Navigate to="/login" />;
+};
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+    <BrowserRouter>
+        <Header />
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/job/:id" element={<JobDetails />} />
+            <Route path="/edit-job/:id" element={<EditJob />} />
+            <Route path="/add-job" element={<PrivateRoute element={<AddJob />} />} />
+        </Routes>
+    </BrowserRouter>
+);
 
 export default App;

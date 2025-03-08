@@ -42,23 +42,36 @@ const SECRET_KEY = 'b4d90ddd38f06cac6fa7a339183972bf38481f41b1f23c0c431f2c101d33
 // User Signup API
 app.post('/signup', async (req, res) => {
   const { name, email, mobile, password } = req.body;
+
   if (!name || !email || !mobile || !password) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
+    const existingUser = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email already registered' });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
-    await db.run('INSERT INTO users (name, email, mobile, password) VALUES (?, ?, ?, ?)', [
-      name,
-      email,
-      mobile,
-      hashedPassword,
-    ]);
-    res.status(201).json({ message: 'User created successfully' });
+    db.run(
+      `INSERT INTO users (name, email, mobile, password) VALUES (?, ?, ?, ?)`,
+      [name, email, mobile, hashedPassword],
+      function (err) {
+        if (err) {
+          console.error('DB INSERT ERROR:', err.message);
+          return res.status(500).json({ error: 'Error creating user' });
+        }
+        console.log('User created with ID:', this.lastID);
+        res.status(201).json({ message: 'User created successfully', userId: this.lastID });
+      }
+    );
   } catch (error) {
+    console.error('SIGNUP ERROR:', error.message);
     res.status(500).json({ error: 'Error creating user' });
   }
 });
+
 
 // User Login API
 app.post('/login', async (req, res) => {
