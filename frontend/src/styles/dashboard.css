@@ -1,112 +1,50 @@
 .dashboard-container {
     width: 90%;
-    max-width: 1200px;
-    margin: 30px auto;
-    font-family: Arial, sans-serif;
+    margin: auto;
+    padding: 20px;
 }
 
-/* Header */
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #007bff;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-}
-
-.dashboard-header h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-/* Auth buttons */
-.auth-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.auth-link {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 12px;
-    background-color: #0056b3;
-    border-radius: 5px;
-}
-
-.auth-link:hover {
-    background-color: #003d80;
-}
-
-.logout-button,
-.add-job-button {
-    padding: 8px 12px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.logout-button:hover {
-    background-color: #218838;
-}
-
-.add-job-button {
-    background-color: #ffc107;
-    color: black;
-}
-
-.add-job-button:hover {
-    background-color: #e0a800;
-}
-
-/* Filters section */
 .filters-container {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 20px 0;
+    background-color: white;
+    padding: 15px;
+    box-shadow: 0 4px 10px #f07545;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
-.search-input,
-.skill-select {
+.search-input, .skill-select {
+    flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 16px;
 }
 
-.clear-button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.clear-button:hover {
-    background-color: #c82333;
+.select-skills {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .selected-skills {
     display: flex;
-    gap: 5px;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .skill-tag {
-    background-color: #17a2b8;
+    background-color: #f07545;
     color: white;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
+    font-size: 14px;
 }
 
 .skill-tag button {
@@ -115,63 +53,73 @@
     color: white;
     margin-left: 5px;
     cursor: pointer;
+    height: 35px;
+}
+
+.clear-button, .add-job-button {
+    background-color: #f07545;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
     font-weight: bold;
 }
 
-/* Job list */
-.job-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+.clear-button:hover, .add-job-button:hover {
+    background-color: #d4633b;
 }
 
-/* Job card */
+.job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .job-card {
-    background: white;
+    width: 100%;
+    background-color: white;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #007bff;
+    box-shadow: 0 4px 10px #f07545;
 }
 
 .job-card h3 {
-    margin: 0;
-    font-size: 20px;
-    color: #333;
+    margin-bottom: 10px;
 }
 
 .job-card p {
     margin: 5px 0;
-    color: #666;
 }
 
 .details-link {
     display: inline-block;
     margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #f07545;
+    color: white;
     text-decoration: none;
-    color: #007bff;
+    border-radius: 4px;
     font-weight: bold;
 }
 
 .details-link:hover {
-    color: #0056b3;
+    background-color: #d4633b;
 }
 
-.edit-button {
-    display: block;
-    width: 100%;
-    background-color: #ffc107;
-    color: black;
-    padding: 8px;
-    text-align: center;
-    font-size: 16px;
+.edit-btn {
+    border: 1px solid #f07545;
+    border-radius: 8px;
+    color: #f07545;
+    text-decoration: none;
+    padding: 8px 12px;
     font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 10px;
 }
 
-.edit-button:hover {
-    background-color: #e0a800;
+.edit-btn:hover {
+    background-color: #f07545;
+    color: white;
 }

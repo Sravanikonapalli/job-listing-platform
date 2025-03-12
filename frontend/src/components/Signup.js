@@ -36,7 +36,7 @@ class Signup extends Component {
         const userDetails = { name, email, mobile, password };  
 
         try {
-            const response = await fetch("https://job-listing-platform-tyqw.onrender.com/signup", {  
+            const response = await fetch("http://localhost:3000/signup", {  
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(userDetails),
@@ -118,8 +118,8 @@ class Signup extends Component {
                     <p>Already have an account? <a href="/login">Sign In</a></p>
                 </div>
 
-                <div className="login-bg-container">
-                    <p className="overlay-text">Your Personal Job Finder</p>
+                <div className="signin-img-con">
+                    <img src="https://i.postimg.cc/pXM1KK1F/Job-Listing-Platform.jpg" alt="login-page-img" className="image"/>
                 </div>
             </div>
         );

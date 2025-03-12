@@ -1,18 +1,19 @@
 .add-job-container {
-    width: 100%;
-    max-width: 500px;
-    margin: 50px auto;
+    display: flex;
+    gap: 30px; 
+    align-items: stretch; 
+    justify-content: center;
     padding: 20px;
+}
+
+.add-job-con {
+    display: flex;
+    flex-direction: column;
     background-color: #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    text-align: center;
-}
-
-.add-job-container h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+    padding: 20px;
+    width: 50%; 
 }
 
 .add-job-form {
@@ -20,54 +21,44 @@
     flex-direction: column;
 }
 
-.input-group {
-    margin-bottom: 15px;
-    text-align: left;
+.label-and-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
-.input-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #555;
-}
-
-.input-group input,
-.input-group textarea {
+input,
+select,
+textarea {
     width: 100%;
-    padding: 10px;
+    height: 35px;
+    padding: 5px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 4px;
 }
 
-.input-group input:focus,
-.input-group textarea:focus {
-    border-color: #007bff;
-    outline: none;
+textarea {
+    height: 80px;
+    resize: none;
 }
 
-.input-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.submit-button {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 18px;
-    padding: 10px;
+button {
+    margin-top: 10px;
+    background-color: #f07545;
+    color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px 15px;
     cursor: pointer;
+    border-radius: 4px;
+    align-self: flex-end; 
 }
 
-.submit-button:hover {
+button:hover {
     background-color: #0056b3;
 }
 
-.error-message {
-    color: red;
-    margin-bottom: 15px;
-    font-weight: bold;
+img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
 }

@@ -12,7 +12,7 @@ const Header = () => {
 
     return (
         <nav>
-            <h1>Job Portal</h1>
+            <h1>JobStation</h1>
             <div>
                 <Link to="/">Dashboard</Link>
                 {isAuthenticated ? (
@@ -22,8 +22,8 @@ const Header = () => {
                     </>
                 ) : (
                     <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/signup">Signup</Link>
+                        <Link className="login-btn" to="/login">Login</Link>
+                        <Link className="register-btn" to="/signup">Register</Link>
                     </>
                 )}
             </div>

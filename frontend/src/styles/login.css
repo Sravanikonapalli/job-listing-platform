@@ -46,7 +46,7 @@ p {
 }
 
 .form-btn {
-    background-color: #007bff;
+    background-color: #f07545;
     color: white;
     border: none;
     padding: 12px;
@@ -58,25 +58,19 @@ p {
 }
 
 .form-btn:hover {
-    background-color: #0056b3;
+    background-color: #e95c24;
 }
-
-.login-bg-container {
-    flex: 1;
-    background-image: url('https://media.istockphoto.com/id/918365088/photo/african-american-man-browsing-work-online-using-job-search-computer-app.jpg?s=612x612&w=0&k=20&c=AkT-aylthGQumNMO8aTJG8d5sJdUwNPN4oIp83CE0GY=');
-    background-size: cover;
-    background-position: center;
+.checkbox-container{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
 }
-
 .overlay-text {
     background: rgba(0, 0, 0, 0.6);
     padding: 10px 20px;
     border-radius: 5px;
+}
+
+@media screen and (max-width:768px){
+    .signin-img-con{
+        display: none;
+    }
 }

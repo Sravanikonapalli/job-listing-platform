@@ -4,11 +4,12 @@ import "../styles/dashboard.css";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosAdd } from "react-icons/io";
 
-const Dashboard = () => {
+const Dashboard = ({ newJob }) => {
     const [jobs, setJobs] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedSkills, setSelectedSkills] = useState([]);
-    const [skills] = useState(["JavaScript", "Python", "HTML", "CSS", "React", "Node.js"]);
+    const [skills] = useState(["JavaScript", "Python", "HTML", "CSS", "React", "Node.js", "SEO", 
+                   "Google Ads", "Content Marketing"]);
     const isAuthenticated = localStorage.getItem("token");
     const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const Dashboard = () => {
             }
         };
         fetchJobs();
-    }, []);
+    }, [newJob]); 
 
     const handleSkillSelect = (skill) => {
         if (skill && !selectedSkills.includes(skill)) {
@@ -41,29 +42,12 @@ const Dashboard = () => {
     };
 
     const filteredJobs = jobs.filter(job =>
-        job.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (selectedSkills.length === 0 || selectedSkills.every(skill => Array.isArray(job.skills) && job.skills.includes(skill)))
+        job.Role.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (selectedSkills.length === 0 || selectedSkills.every(skill => job.Skills && job.Skills.includes(skill)))
     );
 
     return (
         <div className="dashboard-container">
-            <header className="dashboard-header">
-                <h1>JobStation</h1>
-                <div className="auth-buttons">
-                    {isAuthenticated ? (
-                        <>
-                            <button className="logout-button" onClick={() => { localStorage.removeItem("token"); navigate("/login"); }}>Logout</button>
-                            <button className="add-job-button" onClick={() => navigate("/add-job")}><IoIosAdd size={20}/> Add Job</button>
-                        </>
-                    ) : (
-                        <>
-                            <Link className="auth-link" to="/login">Login</Link>
-                            <Link className="auth-link" to="/signup">Register</Link>
-                        </>
-                    )}
-                </div>
-            </header>
-
             <div className="filters-container">
                 <input
                     type="text"
@@ -72,6 +56,7 @@ const Dashboard = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="search-input"
                 />
+                <div className="select-skills">
                 <select onChange={(e) => handleSkillSelect(e.target.value)} className="skill-select">
                     <option value="">Select Skill</option>
                     {skills.map((skill) => (
@@ -81,26 +66,36 @@ const Dashboard = () => {
                 <div className="selected-skills">
                     {selectedSkills.map(skill => (
                         <span key={skill} className="skill-tag">
-                            {skill} <button onClick={() => handleSkillRemove(skill)}><RxCross2 size={20}/></button>
+                            {skill} <button onClick={() => handleSkillRemove(skill)}>
+                                <RxCross2 size={20} />
+                            </button>
                         </span>
                     ))}
                 </div>
                 <button onClick={clearFilters} className="clear-button">Clear</button>
+                </div>
+                <div>
+                {isAuthenticated && 
+                <button className="add-job-button" onClick={() => navigate("/add-job")}>
+                    <IoIosAdd size={20} /> Add Job
+                </button>
+                }
+                </div>
             </div>
+            
 
             <div className="job-list">
                 {filteredJobs.map((job) => (
-                    <div key={job.id} className="job-card">
-                        <h3>{job.title}</h3>
-                        <p><strong>Salary:</strong> {job.salaryRange}</p>
-                        <p><strong>Job Type:</strong> {job.jobType}</p>
-                        <p><strong>Location:</strong> {job.location}</p>
-                        <p><strong>Skills:</strong> {Array.isArray(job.skills) ? job.skills.join(", ") : "No skills listed"}</p>
-                        <Link to={`/job/${job.id}`} className="details-link">View Details</Link>
-
-                        {isAuthenticated && (
-                            <button onClick={() => navigate(`/edit-job/${job.id}`)} className="edit-button">Edit</button>
-                        )}
+                    <div key={job.JobID} className="job-card">
+                        <h3>{job.Role}</h3>
+                        <p><strong>Employees:</strong> {job.Employees}</p>
+                        <p><strong>Salary:</strong> {job.Stipend}</p>
+                        <p><strong>Location:</strong> {job.Location}</p>
+                        <p><strong>Skills:</strong> {job.Skills ? job.Skills : "No skills listed"}</p>
+                        {isAuthenticated && 
+                        <Link to={`/edit-job/${job.JobID}`} className="edit-btn">Edit Job</Link>
+                        }
+                        <Link to={`/job/${job.JobID}`} className="details-link">View Details</Link>
                     </div>
                 ))}
             </div>
