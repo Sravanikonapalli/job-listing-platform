@@ -22,7 +22,7 @@ const EditJob = () => {
     useEffect(() => {
         const fetchJobDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/jobs/${id}`);
+                const response = await fetch(`https://job-listing-platform-tyqw.onrender.com/api/jobs/${id}`);
                 if (response.ok) {
                     const data = await response.json();
                     setJobData(data);
@@ -50,7 +50,7 @@ const EditJob = () => {
             return;
         }
         try {
-            const response = await fetch(`http://localhost:3000/api/jobs/${id}`, {
+            const response = await fetch(`https://job-listing-platform-tyqw.onrender.com/api/jobs/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

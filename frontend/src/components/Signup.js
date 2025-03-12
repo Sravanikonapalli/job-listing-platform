@@ -36,7 +36,7 @@ class Signup extends Component {
         const userDetails = { name, email, mobile, password };  
 
         try {
-            const response = await fetch("http://localhost:3000/signup", {  
+            const response = await fetch("https://job-listing-platform-tyqw.onrender.com/signup", {  
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(userDetails),

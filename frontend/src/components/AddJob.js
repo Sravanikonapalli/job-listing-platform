@@ -75,7 +75,7 @@ const AddJob = ({ onJobAdded }) => {
                 }
             });
 
-            const response = await fetch("http://localhost:3000/api/jobs", {
+            const response = await fetch("https://job-listing-platform-tyqw.onrender.com/api/jobs", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
